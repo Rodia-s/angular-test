@@ -1,0 +1,32 @@
+/**
+ * Created by rano on 20/11/16.
+ */
+
+angular.module('myApp.AuthService', []
+).factory("AuthService", ['$window', '$q', function ($window, $q) {
+    var userList = [];
+    var err = "Wrong UserName or Password";
+    userList.push({userName: "Rodia", password: "serrano", connected: "false"});
+    userList.push({userName: "Xavié", password: "Gai-rein", connected: "false"});
+    function authUser(name, password) {
+        var deferred = $q.defer();
+        for (var i = 0; i < userList.length; i++) {
+            if (userList[i].userName === name && userList[i].password === password) {
+                userList[i].connected = true;
+                $window.localStorage.setItem('connected', true);
+                deferred.resolve(userList[i].connected);
+            }
+            else if (userList.length === i) {
+                deferred.reject(err)
+            }
+        }
+        return deferred.promise;
+    };
+console.time("getData");
+    function getData() {
+        return $window.localStorage.getItem('connected');
+    };
+    return {getData: getData, authUser: authUser, userList: userList};
+
+}]);
+console.timeEnd("getData");
