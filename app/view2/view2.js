@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.view2', ['ngRoute'])
+angular.module('myApp.view2', ['ngRoute','myApp.LogoutService'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/view2', {
@@ -12,8 +12,12 @@ angular.module('myApp.view2', ['ngRoute'])
         
 
 
-    .controller('View2Ctrl', ['$scope','AuthService','$state',function ($scope,AuthService,$state) {
-           
+    .controller('View2Ctrl', ['$scope','LogoutService','$state',function ($scope,LogoutService,$state) {
+        $scope.logout = function () {
+            LogoutService.logout();
+            $state.go('view1');
+
         }
-        ]);
+    }
+    ]);
   
