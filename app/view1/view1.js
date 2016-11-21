@@ -17,16 +17,10 @@ angular.module('myApp.view1', ['ngRoute','myApp.AuthService'])
       //auth.login(vm.user)
       var userPassword = $scope.data;
       AuthService.authUser(userPassword.username, userPassword.password)
-          .then(connected => console.log(connected))
-          .catch(err=>console.log(err));
+          .then(connected =>$state.go('view2'))
+          .catch(err=> $scope.marked=err);
+
       console.log(AuthService.getData());
-      if (AuthService.getData()) {
-          $state.go('view2');
-          console.log('caca');
-      }
-      else {
-          console.log("Not login");
-      }
       console.log(userPassword);
   };
 

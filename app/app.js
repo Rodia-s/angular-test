@@ -40,7 +40,8 @@ angular.module('myApp', ['ui.router',
 })
 .run(['$state', 'AuthService', '$rootScope',function($state,AuthService,$rootScope){
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState) {
-        if (AuthService.getData()=== null) {
+        var user = AuthService.getData();
+        if (user.connected=== null) {
             $state.go('view1');
         }
     })}]

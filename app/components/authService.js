@@ -13,18 +13,20 @@ angular.module('myApp.AuthService', []
         for (var i = 0; i < userList.length; i++) {
             if (userList[i].userName === name && userList[i].password === password) {
                 userList[i].connected = true;
-                $window.localStorage.setItem('connected', true);
+                $window.localStorage.setItem('userName', userList[i].userName);
+                $window.localStorage.setItem('connected',userList[i].connected);
                 deferred.resolve(userList[i].connected);
             }
-            else if (userList.length === i) {
-                deferred.reject(err)
+            else if (userList.length === i+1) {
+                deferred.reject(err);
+                console.log('dans else if authuser');
             }
         }
         return deferred.promise;
     };
 console.time("getData");
     function getData() {
-        return $window.localStorage.getItem('connected');
+        return {state:$window.localStorage.getItem('connected'),name:$window.localStorage.getItem('userName')};
     };
     return {getData: getData, authUser: authUser, userList: userList};
 
