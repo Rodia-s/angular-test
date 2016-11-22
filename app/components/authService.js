@@ -26,7 +26,7 @@ angular.module('myApp.AuthService', []
     };
 console.time("getData");
     function getData() {
-        return {state:$window.localStorage.getItem('connected'),name:$window.localStorage.getItem('userName')};
+        return $window.localStorage.getItem('connected');
     };
     return {getData: getData, authUser: authUser, userList: userList};
 

@@ -20,6 +20,9 @@ angular.module('myApp.view2', ['ngRoute','myApp.LogoutService','myApp.AuthServic
         }
         $scope.userData = AuthService.getData();
         console.log($scope.userData)
+        $scope.profile = function() {
+            $state.go('view3');
+        }
     }
     ]);
   

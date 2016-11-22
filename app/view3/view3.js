@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('myApp.view3', ['ngRoute'])
+angular.module('myApp.view3', ['ngRoute','myApp.AuthService'])
 
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/view3', {
@@ -13,6 +13,6 @@ angular.module('myApp.view3', ['ngRoute'])
     }])
 
 
-    .controller('View3Ctrl', ['$scope',function ($scope) {
-
+    .controller('View3Ctrl', ['$scope','AuthService',function ($scope,AuthService) {
+        $scope.userData = AuthService.getData();
     }]);

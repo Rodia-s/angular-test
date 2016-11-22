@@ -18,10 +18,7 @@ angular.module('myApp.view1', ['ngRoute','myApp.AuthService'])
       var userPassword = $scope.data;
       AuthService.authUser(userPassword.username, userPassword.password)
           .then(connected =>$state.go('view2'))
-          .catch(err=> $scope.marked=err);
-
-      console.log(AuthService.getData());
-      console.log(userPassword);
+          .catch(err=> $scope.marked=err)
   };
 
     

@@ -5,7 +5,7 @@ angular.module('myApp.LogoutService', []
 ).factory("LogoutService", ['$window',function ($window) {
 
     function logout() {
-        return $window.localStorage.removeItem("connected");
+        return {state:$window.localStorage.removeItem("connected"), name:$window.localStorage.removeItem("userName")};
     }
     return {logout:logout};
 }

@@ -4,7 +4,8 @@
 angular.module('myApp', ['ui.router',
   'ngRoute',
   'myApp.view1',
-  'myApp.view2',
+  'myApp.view2', 
+    'myApp.view3',
   'myApp.version',
   'myApp.AuthService'
 ])
@@ -29,7 +30,7 @@ angular.module('myApp', ['ui.router',
       })
       .state('view3', {
         url: '/view3',
-        template: 'view3',
+        template: 'view3/view3.html',
         data: {
           authorization: true,
           redirectTo: 'view1'
@@ -41,8 +42,12 @@ angular.module('myApp', ['ui.router',
 .run(['$state', 'AuthService', '$rootScope',function($state,AuthService,$rootScope){
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState) {
         var user = AuthService.getData();
-        if (user.connected=== null) {
+        console.log(user);
+        if (user!== null && user.connected!==true ) {
+            console.log(connected)
+        }
+        else {
             $state.go('view1');
         }
     })}]
-);
+); 
