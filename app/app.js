@@ -13,7 +13,7 @@ angular.module('myApp', ['ui.router',
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('view1');
+  $urlRouterProvider.otherwise('/view1');
 
   $stateProvider
       .state('view1', {
